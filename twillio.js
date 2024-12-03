@@ -1,11 +1,18 @@
 //me importing twillio
 const twillio = require('twilio')
+require('dotenv').config();
 // accountsid
-const AccountSID = 'ACe02a4d13185686d988761eb518e81b5e'
+const AccountSID = process.env.ACCOUNTT_SID
+console.log(AccountSID);
+
 //authtoken
-const AuthToken = '8a62bf8c33a0bbd0788c48e44e4ee32f'
+const AuthToken = process.env.AUTH_TOKEN
+console.log(AuthToken);
+
 // verification Service
-const Verify_service = 'VAdd4ae74171fc9b43f52b389a2d3015f1'
+const Verify_service = process.env.VERIFY_SERVICE_ID
+console.log(Verify_service);
+
 //assigning twillio to a variable named client
 const client = twillio(AccountSID, AuthToken);
 
@@ -17,9 +24,9 @@ const sendOtp = (phonenumber) => {
 //verify otp
 const otpVerification = (phonenumber, code) => {
     return client.verify.v2.services(Verify_service)
-    .verifications.create({ to: phonenumber, code: code })
+        .verifications.create({ to: phonenumber, code: code })
 }
-module.exports={
+module.exports = {
     sendOtp,
     otpVerification
 }
