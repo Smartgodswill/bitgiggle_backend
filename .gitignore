@@ -1,1 +1,5 @@
 node_modules/
+# Ignore environment variables
+.env/*
+# Ignore Twilio configuration file containing secrets
+twillio.js/*
